@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  project: App-of-Apps-Concept
+  source:
+    repoURL: https://github.com/ahmad0303/HelmChart-with-ArgoCD-Deploying_Wordpress.git
+    path: applications  # Points to the folder containing child apps
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
