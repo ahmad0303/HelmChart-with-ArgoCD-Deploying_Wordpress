@@ -1,0 +1,30 @@
+environment: prod
+
+image:
+  repository: mysql
+  tag: 5.7
+  pullPolicy: IfNotPresent
+
+auth:
+  secretName: mysql-secrets-prod  
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+service:
+  type: LoadBalancer
+  port: 3306
+
+wordpress:
+  enabled: true
+  image:
+    repository: wordpress
+    tag: latest
+  service:
+    type: LoadBalancer
+    port: 80
+  env:
+    secretName: wordpress-secrets-prod
+    dbHost: wordpress-prod       
+    dbName: mydatabase-prod

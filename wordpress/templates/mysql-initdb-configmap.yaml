@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.environment }}-mysql-initdb-script
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS `$(MYSQL_DATABASE)`;
+    CREATE USER IF NOT EXISTS '$(MYSQL_USER)'@'%' IDENTIFIED BY '$(MYSQL_PASSWORD)';
+    GRANT ALL PRIVILEGES ON `$(MYSQL_DATABASE)`.* TO '$(MYSQL_USER)'@'%';
+    FLUSH PRIVILEGES;
