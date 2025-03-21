@@ -54,3 +54,7 @@ Repeat this for `staging-app.yaml` and `prod-app.yaml`, updating `values-staging
 
 This project integrates Helm with ArgoCD to provide a **GitOps-based** workflow for managing WordPress deployments in Kubernetes. Any updates to `values.yaml` files will be automatically reflected in the cluster, ensuring a **declarative and automated deployment** process.
 
+
+![](https://github.com/user-attachments/assets/3b7efba4-cafa-4c95-a5c8-59fdc0b46abe)
+
+
