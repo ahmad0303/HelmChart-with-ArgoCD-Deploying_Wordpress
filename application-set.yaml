@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: wordpress-app-set
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: dev
+            namespace: dev
+            valuesFile: values-dev.yaml
+          - name: staging
+            namespace: staging
+            valuesFile: values-staging.yaml
+          - name: prod
+            namespace: prod
+            valuesFile: values-prod.yaml
+  template:
+    metadata:
+      name: wordpress-{{name}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/ahmad0303/HelmChart-with-ArgoCD-Deploying_Wordpress.git
+        path: wordpress
+        targetRevision: main
+        helm:
+          valueFiles:
+            - "{{valuesFile}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

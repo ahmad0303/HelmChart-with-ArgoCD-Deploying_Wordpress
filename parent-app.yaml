@@ -4,10 +4,10 @@ metadata:
   name: app-of-apps
   namespace: argocd
 spec:
-  project: App-of-Apps-Concept
+  project: default
   source:
     repoURL: https://github.com/ahmad0303/HelmChart-with-ArgoCD-Deploying_Wordpress.git
-    path: applications  # Points to the folder containing child apps
+    path: applications  
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
