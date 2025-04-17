@@ -23,7 +23,7 @@ Check if ArgoCD is running:
 
 For **Windows CMD**, run:
 
-For **Git Bash**, retrieve the ArgoCD password:
+For **Git Bash** retrieve the ArgoCD password:
 
 To get the ArgoCD URL in Minikube:
 
